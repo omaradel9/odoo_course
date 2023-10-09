@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_courses,courses,model_courses,base.group_user,1,1,1,1
+access_room,room,model_room,base.group_user,1,1,1,1
+access_lesson,lesson,model_lesson,base.group_user,1,1,1,1
+access_attendance,attendance,model_attendance,base.group_user,1,1,1,1
+access_reminders,reminders,model_reminders,base.group_user,1,1,1,1
+access_list_reminders,list.reminders,model_list_reminders,base.group_user,1,1,1,1
+access_cource_price_list,cource.price.list,model_cource_price_list,base.group_user,1,1,1,1

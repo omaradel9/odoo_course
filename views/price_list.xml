@@ -1,0 +1,33 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="courses.price_list">
+      <field name="name">cource.price.list</field>
+      <field name="model">cource.price.list</field>
+      <field name="arch" type="xml">
+        <tree editable="top" create="1" edit="1">
+          <field name="course_id"/>
+          <field name="count_from"/>
+          <field name="count_to"/>
+          <field name="price"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="price_list_action_window">
+      <field name="name">cource.price.list.window</field>
+      <field name="res_model">cource.price.list</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+
+ 
+
+
+
+    <menuitem name="Price List" id="courses.price_lists" parent="courses.menu_root" action="courses.price_list_action_window"/>
+
+
+  </data>
+</odoo>

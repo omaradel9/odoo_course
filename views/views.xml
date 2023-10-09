@@ -1,0 +1,87 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="courses.course_list">
+      <field name="name">courses list</field>
+      <field name="model">courses</field>
+      <field name="arch" type="xml">
+        <form>
+        <header>
+            <button string="confirm" name="action_confirm" type="object" class="btn-primary"/>
+            <button string="Crearte Invoice" name="action_create_invoice" type="object" class="btn-primary"/>
+            <field name="state" widget="statusbar"/>
+        </header>
+        <sheet>
+          <h1><field name="name"/></h1>
+          <group>
+            <group>
+                <field name="instructor_id"/>
+                <field name="capcity"/>
+                <field name="attendance_counter"/>
+                <field name="max_cap"/>
+                <field name="product_id"/>
+
+               
+            </group>
+            <group>
+                <field name="room_ids"/>
+            
+                <field name="lesson_ids2" widget="many2many_tags" />
+
+            </group>
+          </group>
+          <notebook>
+            <page name="attendace" string="Attendance">
+                <field name="attendance_ids" attrs="{'readonly':[('max_cap', '=',True)]}">
+                  <tree editable="buttom">
+                    <field name="student_id"/>
+                    <field name="student_card_id"/>
+                    <field name="course_id"/>
+                  </tree>
+                </field>
+
+            </page>
+          
+          </notebook>
+        </sheet>
+          
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="courses.course_form">
+      <field name="name">courses list</field>
+      <field name="model">courses</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="instructor_id"/>
+          <field name="room_ids"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="courses_action_window">
+      <field name="name">courses window</field>
+      <field name="res_model">courses</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+ 
+
+    <menuitem name="Courses" id="courses.menu_root" />
+    <!-- menu categories -->
+
+    <menuitem name="Courses" id="courses.menu_1" parent="courses.menu_root" action="courses.courses_action_window"/>
+
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="courses.menu_1_list" parent="courses.menu_1"
+              action="courses.action_window"/>
+    <menuitem name="Server to list" id="courses" parent="courses.menu_2"
+              action="courses.action_server"/>
+-->
+  </data>
+</odoo>

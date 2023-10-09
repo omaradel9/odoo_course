@@ -1,0 +1,90 @@
+<odoo>
+  <data>
+   <record forcecreate="True" id="reminder_scheduler_action" model="ir.cron">
+            <field name="name">reminder scheduler action</field>
+            <field name="model_id" ref="model_reminders"/>
+            <field name="state">code</field>
+            <field name="code">model.action_send_reminders()</field>
+            <field eval="True" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">4</field>
+        </record>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="courses.reminders_form">
+      <field name="name">reminders form</field>
+      <field name="model">reminders</field>
+      <field name="arch" type="xml">
+        <form>
+        <header>
+          <button string="Send" name="action_send_reminders" type="object" class="btn-primary" data-hotkey="q"/>
+        </header>
+        <sheet>
+          <h1><field name="name"/></h1>
+          <group>
+            <group>
+                <field name="recipient_id"/>
+                <field name="sender_id"/>
+               
+            </group>
+            <group>
+               
+                <field name="decription"/>
+
+            </group>
+          </group>
+          <notebook>
+            <page name="reminders" string="List Reminders">
+                <field name="list_reminders_ids">
+                  <tree>
+                    <field name="period"/>
+                    <field name="period_time"  widget="float_time"  attrs="{'invisible':[('period', 'not in' ,('minute','day'))]}"/>
+                    <field name="period_time"  attrs="{'invisible':[('period', 'in' ,('minute','day'))]}"/>
+                    <field name="last_time"/>
+                  </tree>
+                </field>
+
+            </page>
+          
+          </notebook>
+        </sheet>
+         <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+          </div>
+          
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="courses.course_form">
+      <field name="name">reminders list</field>
+      <field name="model">reminders</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="sender_id"/>
+          <field name="recipient_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="reminders_action_window">
+      <field name="name">reminders window</field>
+      <field name="res_model">reminders</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+ 
+
+
+
+    <menuitem name="Reminders" id="courses.reminders" parent="courses.menu_root" action="courses.reminders_action_window"/>
+
+
+  </data>
+</odoo>
